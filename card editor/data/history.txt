@@ -1,0 +1,7 @@
+# database history
+C:\Projeto Corporacao\repositories\EDOPro-Corporation-CustomCards\cards-fenisus.cdb
+C:\Projeto Corporacao\repositories\EDOPro-Corporation-CustomCards\cards-jaziel.cdb
+# script history
+C:\Projeto Corporacao\repositories\EDOPro-Corporation-CustomCards\script\c140.lua
+C:\Projeto Corporacao\repositories\EDOPro-Corporation-CustomCards\script\c139.lua
+C:\Projeto Corporacao\repositories\EDOPro-Corporation-CustomCards\script\c125.lua
