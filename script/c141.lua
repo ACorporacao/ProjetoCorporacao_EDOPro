@@ -5,7 +5,7 @@
 local s,id=GetID()
 
 function s.initial_effect(c)
-	-- Equipar 1 monstro do oponente
+	-- Equipar
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_IGNITION)
@@ -16,11 +16,10 @@ function s.initial_effect(c)
 	e1:SetOperation(s.eqop)
 	c:RegisterEffect(e1)
 
-	-- Necessário pro sistema de equip funcionar
-	aux.AddEREquipLimit(c,nil,function(ec,tp) return ec:IsControler(1-tp) end)
+	-- FIX AQUI
+	aux.AddEREquipLimit(c,nil,function(ec,tp) return ec:IsControler(1-tp) end,e1)
 end
 
--- TARGET
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then
 		return chkc:IsLocation(LOCATION_MZONE)
@@ -36,7 +35,6 @@ function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_EQUIP,g,1,0,0)
 end
 
--- OPERAÇÃO
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
