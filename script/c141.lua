@@ -16,8 +16,18 @@ function s.initial_effect(c)
 	e1:SetOperation(s.eqop)
 	c:RegisterEffect(e1)
 
-	-- FIX AQUI
-	aux.AddEREquipLimit(c,nil,function(ec,tp) return ec:IsControler(1-tp) end,e1)
+	-- FORMA CORRETA PRA SUA VERSÃO
+	aux.AddEREquipLimit(c,nil,s.eqlimit,s.equipop,e1)
+end
+
+-- filtro de alvo válido
+function s.eqlimit(ec,c,tp)
+	return ec:IsControler(1-tp)
+end
+
+-- operação obrigatória (mesmo que vazia funcionalmente)
+function s.equipop(c,e,tp,tc)
+	c:EquipByEffectAndLimitRegister(e,tp,tc,id)
 end
 
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -40,5 +50,5 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not tc or not tc:IsRelateToEffect(e) then return end
 
-	c:EquipByEffectAndLimitRegister(e,tp,tc,id)
+	s.equipop(c,e,tp,tc)
 end
